@@ -149,9 +149,68 @@
     <origin xyz="${-base_length/2+axle_offset} ${+base_width/2+axle_offset} 0" rpy="${-90 * deg_to_rad} 0 0"/>
   </xacro:rear_wheel_lr>
 
+  <link name="lidar">
+    <inertial>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.055" radius="0.0508"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.15" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.055" radius="0.0508"/>
+      </geometry>
+    </collision>
+    </link>
+
+    <joint name="lidar_joint" type="fixed">
+      <parent link = "base_link"/>
+      <child link = "lidar"/>
+      <pose>-0.032 0 0.171 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>true</use_parent_model_frame>
+      </axis>
+    </joint>
+
   <!-- Colour -->
   <gazebo reference="base_link">
     <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="lidar">
+    <material>Gazebo/Red</material>
+    <sensor name="laser" type="ray">
+        <pose> 0 0 0 0 0 0 </pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray> 
+          <scan>
+              <horizontal>
+                  <samples>360</samples>
+                  <min_angle>-3.14</min_angle>
+                  <max_angle>3.14</max_angle>
+              </horizontal>
+          </scan>
+          <range>
+              <min>0.3</min>
+              <max>12</max>
+          </range>       
+        </ray>
+        <!--laser_controller libgazebo_ros_ray_sensor.so!-->
+        <plugin name="ros_ray_sensor_controller" filename="libgazebo_ros_laser.so">
+            <output_type>sensor_msgs/LaserScan</output_type>
+            <frameName>lidar</frameName>
+            <topicName>/scan</topicName>
+        </plugin>
+    </sensor>
   </gazebo>
 
 </robot>
