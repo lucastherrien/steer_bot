@@ -11,8 +11,8 @@ ackermann_steering_controller:
     front_steer: 'front_steer_joint'
 
     # Geometry
-    wheel_separation_h: 0.40
-    wheel_radius: 0.1
+    wheel_separation_h: 0.32
+    wheel_radius: 0.139
 
     # Odometry calibration and tuning
     wheel_separation_h_multiplier: 1.0  # default: 1.0
@@ -28,14 +28,14 @@ ackermann_steering_controller:
 
     # Transform from odom -> base_link
     enable_odom_tf: true
-    odom_frame_id: '/odom'
+    odom_frame_id: 'odom'
 
     # Set to false if the motor driver provides velocity data. 
     estimate_velocity_from_position: true
 
     # Commands
     publish_cmd: true
-    allow_multiple_cmd_vel_publishers: false
+    allow_multiple_cmd_vel_publishers: true
 
     # Velocity and acceleration limits for the robot
     linear:
