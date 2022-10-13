@@ -90,6 +90,26 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /camera1/image_raw
+      Name: Camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: false
+      Visibility:
+        Axes: true
+        DepthCloud: true
+        Grid: true
+        LaserScan: true
+        Odometry: true
+        RobotModel: true
+        TF: true
+        Value: true
+      Zoom Factor: 1
     - Alpha: 0.30000001192092896
       Class: rviz/RobotModel
       Collision Enabled: false
