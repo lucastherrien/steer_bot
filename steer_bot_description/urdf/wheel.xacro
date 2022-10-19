@@ -175,7 +175,7 @@
     </gazebo>
     
     <gazebo reference="${name}_wheel_link">
-      <material>Gazebo/Red</material>
+      <material>Gazebo/Black</material>
     </gazebo>
   </xacro:macro>
 
@@ -324,7 +324,7 @@
     </transmission>
 
     <gazebo reference="${name}_wheel_link">
-      <material>Gazebo/Red</material>
+      <material>Gazebo/Black</material>
     </gazebo>
   </xacro:macro>
 </robot>
