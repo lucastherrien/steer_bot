@@ -19,7 +19,8 @@
 <robot name="steer_bot" xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- Include xacro for inertials, materials and wheels -->
   <xacro:include filename="$(find steer_bot_description)/urdf/wheel.xacro"/>
-
+  <xacro:include filename="$(find steer_bot_description)/urdf/SICK_lidar.xacro"/>
+  <xacro:include filename="$(find steer_bot_description)/urdf/kinect_cam.xacro"/>
   <xacro:property name="robot_namespace" value="/steer_bot"/>
 
   <!-- Gazebo plugins -->
@@ -37,24 +38,24 @@
   <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
 
   <!-- Robot base dimensions -->
-  <xacro:property name="base_length" value="0.5" /> 
-  <xacro:property name="base_width" value="0.3" /> 
-  <xacro:property name="base_height" value="0.1" /> 
+  <xacro:property name="base_length" value="0.38735" /> <!--fake 0.5 real 0.139-->
+  <xacro:property name="base_width" value="0.23495" /> <!--fake 0.3 real 0.139-->
+  <xacro:property name="base_height" value="0.06985" /> <!--fake 0.1 real 0.139-->
   <xacro:property name="base_mass" value="5" /> 
 
   <!-- Wheel link dimensions -->
-  <xacro:property name="wheel_radius" value="0.1" />
-  <xacro:property name="wheel_thickness" value="0.08" />
+  <xacro:property name="wheel_radius" value="0.0635" /> <!--fake 0.1 real 0.139-->
+  <xacro:property name="wheel_thickness" value="0.0381" /> <!--fake 0.08 real 0.139-->
   <xacro:property name="wheel_mass" value="1" />
 
   <!-- Steering link dimensions -->
-  <xacro:property name="steer_radius" value="0.05" />
+  <xacro:property name="steer_radius" value="0.05" /> 
   <xacro:property name="steer_thickness" value="0.02" />
   <xacro:property name="steer_mass" value="1" />
 
   <!-- Axle positions -->
-  <xacro:property name="axle_offset" value="0.05" />
-  <xacro:property name="steer_offset" value="0.02" />
+  <xacro:property name="axle_offset" value="0.0254" /> <!--fake 0.05 real 0.139-->
+  <xacro:property name="steer_offset" value="0.0254" /> <!--fake 0.02 real 0.139-->
 
   <!-- Base link -->
   <link name="base_link">
@@ -149,72 +150,42 @@
     <origin xyz="${-base_length/2+axle_offset} ${+base_width/2+axle_offset} 0" rpy="${-90 * deg_to_rad} 0 0"/>
   </xacro:rear_wheel_lr>
 
-  <link name="lidar">
-    <inertial>
-      <origin xyz="0 0 0.15" rpy="0 0 0"/>
-      <mass value="1"/>
-      <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0.15" rpy="0 0 0"/>
-      <geometry>
-        <cylinder length="0.055" radius="0.0508"/>
-      </geometry>
-      <!--<material name="red"/>-->
-    </visual>
-    <collision>
-      <origin xyz="0 0 0.15" rpy="0 0 0"/>
-      <geometry>
-        <cylinder length="0.055" radius="0.0508"/>
-      </geometry>
-    </collision>
-    </link>
+    <xacro:SICK_lidar name="lidar">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:SICK_lidar>
+
+    <xacro:kinect_cam name="camera_real">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:kinect_cam>
 
     <link name="camera">
       <inertial>
-        <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <mass value="0.25"/>
         <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
       </inertial>
       <visual>
-        <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="${steer_radius} ${steer_radius} ${steer_thickness}"/>
+          <box size="0.01 0.01 0.01"/>
         </geometry>
-        <!--<material name="red"/>-->
       </visual>
       <collision>
-        <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <box size="${steer_radius} ${steer_radius} ${steer_thickness}"/>
+          <box size="0.01 0.01 0.01"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="lidar_joint" type="fixed">
-      <parent link = "base_link"/>
-      <child link = "lidar"/>
-      <pose>-0.032 0 0.171 0 0 0</pose>
-      <axis>
-        <xyz>0 0 1</xyz>
-        <use_parent_model_frame>false</use_parent_model_frame>
-      </axis>
-      <limit effort="${steer_effort}"
-             lower="0" upper="0"
-             velocity="${steer_velocity}"/>
-    </joint>
-
     <joint name="camera_joint" type="fixed">
       <parent link = "base_link"/>
       <child link = "camera"/>
-      <pose>0.2 0 0.171 0 0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
       <axis>
         <xyz>0 0 1</xyz>
         <use_parent_model_frame>true</use_parent_model_frame>
       </axis>
-      <!--<limit effort="${steer_effort}"
-             lower="0" upper="0"
-             velocity="${steer_velocity}"/>-->
     </joint>
 
   <!-- Colour -->
@@ -222,50 +193,11 @@
     <material>Gazebo/Grey</material>
   </gazebo>
 
-  <gazebo reference="lidar">
-    <material>Gazebo/RedGlow</material>
-    <sensor name="laser" type="ray">
-        <parent link="lidar"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <pose> 0 0 0.1 0 0 0 </pose>
-        <axis>
-          <xyz>0 0 1</xyz>
-          <use_parent_model_frame>true</use_parent_model_frame>
-        </axis>
-        <visualize>true</visualize>
-        <update_rate>10</update_rate>
-        <ray> 
-          <scan>
-              <horizontal>
-                  <samples>360</samples>
-                  <min_angle>-3.14</min_angle>
-                  <max_angle>3.14</max_angle>
-              </horizontal>
-          </scan>
-          <range>
-              <min>0.3</min>
-              <max>12</max>
-          </range>       
-        </ray>
-        <!--laser_controller libgazebo_ros_ray_sensor.so!-->
-        <plugin name="ros_ray_sensor_controller" filename="libgazebo_ros_laser.so">
-            <output_type>sensor_msgs/LaserScan</output_type>
-            <frameName>lidar</frameName>
-            <topicName>/scan</topicName>
-        </plugin>
-    </sensor>
-  </gazebo>
-
   <gazebo reference="camera">
-    <material>Gazebo/BlueGlow</material>
-    <sensor type="camera" name="camera1">
-      <!--<origin xyz="0.25 0 0.1" rpy="0 0 0"/>-->
+    <material>Gazebo/Black</material>
+    <sensor type="camera" name="cameraFake">
       <pose> 0.25 0 0.3 0 0 0 </pose>
-      <!--<axis>
-          <xyz>0 0 1</xyz>
-          <use_parent_model_frame>true</use_parent_model_frame>
-      </axis>-->
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <update_rate>30.0</update_rate>
       <camera>
         <horizontal_fov>1.3962634</horizontal_fov>
@@ -287,8 +219,8 @@
       <plugin name="camera1_camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>30.0</updateRate>
-        <imageTopicName>/camera1/image_raw</imageTopicName>
-        <cameraInfoTopicName>/camera1/camera_info</cameraInfoTopicName>
+        <imageTopicName>/camera2/image_raw</imageTopicName>
+        <cameraInfoTopicName>/camera2/camera_info</cameraInfoTopicName>
         <frameName>camera</frameName>
         <hackBaseline>0.2</hackBaseline>
         <distortionK1>0.0</distortionK1>
@@ -301,3 +233,4 @@
   </gazebo>
 
 </robot>
+

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<robot name="kinect_cam" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:macro name="kinect_cam"
+    params="
+      name
+      *origin">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+        <mass value="0.25"/>
+        <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+      </inertial>
+      <visual>
+        <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://zm_robot_description/meshes/kinect_v2.stl" scale="0.01 0.01 0.01"/>
+        </geometry>
+        <!--<material name="red"/>-->
+      </visual>
+      <collision>
+        <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://steer_bot_description/meshes/kinect_v2.stl" scale="0.01 0.01 0.01"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_joint" type="revolute">
+      <parent link = "base_link"/>
+      <child link = "${name}"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="1"
+             lower="0" upper="0"
+             velocity="1"/>
+    </joint>
+
+    <gazebo reference="${name}">
+        <material>Gazebo/Black</material>
+        <sensor type="camera" name="camera1">
+        <origin xyz="0.25 0 0.1" rpy="0 0 0"/>
+        <pose> 0.2 0 0.1 0 0 0 </pose>
+        <!--<axis>
+            <xyz>0 0 1</xyz>
+            <use_parent_model_frame>true</use_parent_model_frame>
+        </axis>-->
+        <visualize>true</visualize>
+        <update_rate>30.0</update_rate>
+        <camera>
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+            </image>
+            <clip>
+            <near>1</near>
+            <far>300</far>
+            </clip>
+            <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.007</stddev>
+            </noise>
+        </camera>
+        <plugin name="camera1_camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>30.0</updateRate>
+            <imageTopicName>/camera1/image_raw</imageTopicName>
+            <cameraInfoTopicName>/camera1/camera_info</cameraInfoTopicName>
+            <frameName>camera</frameName>
+            <hackBaseline>0.2</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+        </plugin>
+        </sensor>
+    </gazebo>
+
+    </xacro:macro>
+</robot>

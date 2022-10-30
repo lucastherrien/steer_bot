@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <!-- 
   Robot model adapted from https://github.com/CIR-KIT/steer_drive_ros/blob/kinetic-devel/steer_drive_controller/test/common/urdf/wheel.xacro
-
   Modifications:
     <transmissions> elements have been updated and added to 'front_steer'.
     Update inertials.
