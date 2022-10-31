@@ -1,7 +1,7 @@
 # Steer Bot
 
-Simulate a simple Ackermann steering vehicle in Gazebo using `ros_control`
-the `ackermann_steering_controller` and `steer_bot_hardware_gazebo`.
+A forked version of srmainwarings steer_bot simulating a Rosbot Mini outfitted with a TiM881P Lidar and a Kinect Camera.
+This simulation environment is intended to be used for Phase 2 of UNC Charlotte's robotic delivery system.
 
 ## Installation
 
@@ -46,27 +46,11 @@ roslaunch steer_bot_viz view_steer_bot_robot.launch
 If all is working well you should see the robot in Gazebo and be able to
 command it using `rqt_robot_steering`:
 
-![steer_gazebo rviz](https://raw.githubusercontent.com/wiki/srmainwaring/steer_bot/images/steer_bot_gazebo.png)
+![steer_gazebo rviz](https://user-images.githubusercontent.com/14840534/199090321-dc328d9e-1c2b-493f-85f6-a15b31827664.png)
 
 The robot model and odometry can be monitored in `rviz`: 
 
 ![steer_bot rviz](https://raw.githubusercontent.com/wiki/srmainwaring/steer_bot/images/steer_bot_rviz.png)
-
-
-## Build Status
-
-### Develop Job Status
-
-|    | Melodic |
-|--- |--- |
-| steer_bot | [![Build Status](https://travis-ci.com/srmainwaring/steer_bot.svg?branch=develop)](https://travis-ci.com/srmainwaring/steer_bot) |
-
-
-### Release Job Status
-
-|    | Melodic |
-|--- |--- |
-| steer_bot | [![Build Status](https://travis-ci.com/srmainwaring/steer_bot.svg?branch=master)](https://travis-ci.com/srmainwaring/steer_bot) |
 
 
 ## License
