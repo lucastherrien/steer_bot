@@ -13,10 +13,10 @@ mkdir -p <catkin_ws>/src
 cd <catkin_ws>/src
 git clone https://github.com/srmainwaring/steer_bot
 
-# Checkout a version of `steer_drive_ros` patched for ROS Melodic
-git clone https://github.com/tsedl/steer_drive_ros.git
+# Checkout a version of `steer_drive_ros` patched for ROS Noetic
+https://github.com/lucastherrien/steer_drive_ros
 cd steer_drive_ros
-git checkout melodic-devel
+git checkout Noetic-devel
 
 # Check dependencies
 rosdep check --from-paths src --ignore-src --rosdistro melodic
