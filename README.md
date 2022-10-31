@@ -19,10 +19,10 @@ cd steer_drive_ros
 git checkout Noetic-devel
 
 # Check dependencies
-rosdep check --from-paths src --ignore-src --rosdistro melodic
+rosdep check --from-paths src --ignore-src --rosdistro noetic
 
 # Install dependencies
-rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+rosdep install --from-paths src --ignore-src --rosdistro noetic -y
 
 # Build
 cd <catkin_ws>/src
