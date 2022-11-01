@@ -72,10 +72,10 @@
         <box size="${base_length} ${base_width} ${base_height}"/>
       </geometry>
     </collision>
-    <!--<xacro:solid_cuboid_inertial 
+    <xacro:solid_cuboid_inertial 
         rpy="0 0 0" xyz="0 0 0"
         mass="${base_mass}"
-        x="${base_length}" y="${base_width}" z="${base_height}" />-->
+        x="${base_length}" y="${base_width}" z="${base_height}" />
   </link>
 
   <!-- Front steer and rear wheel joints required for ackermann_steering_controller -->
@@ -216,7 +216,7 @@
           <stddev>0.007</stddev>
         </noise>
       </camera>
-      <plugin name="camera1_camera_controller" filename="libgazebo_ros_camera.so">
+      <plugin name="camera2_camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>30.0</updateRate>
         <imageTopicName>/camera2/image_raw</imageTopicName>
