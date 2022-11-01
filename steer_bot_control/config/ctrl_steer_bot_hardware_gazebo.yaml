@@ -7,6 +7,9 @@ steer_bot_hardware_gazebo:
   virtual_front_wheels: ['front_right_wheel_joint', 'front_left_wheel_joint']
   virtual_front_steers: ['front_right_steer_joint', 'front_left_steer_joint']
 
+  lidar_joint : 'lidar_joint'
+  camera_joint : 'camera_real_joint'
+
   enable_ackermann_link : true
-  wheel_separation_h : 0.4
-  wheel_separation_w : 0.4
+  wheel_separation_h : 0.38735
+  wheel_separation_w : 0.278

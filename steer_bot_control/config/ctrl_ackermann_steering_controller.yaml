@@ -9,10 +9,12 @@ ackermann_steering_controller:
     # Joints
     rear_wheel: 'rear_wheel_joint'
     front_steer: 'front_steer_joint'
+    lidar: 'lidar_joint'
+    camera: 'camera_real_joint'
 
     # Geometry
-    wheel_separation_h: 0.32
-    wheel_radius: 0.139
+    wheel_separation_h: 0.38735
+    wheel_radius: 0.0635
 
     # Odometry calibration and tuning
     wheel_separation_h_multiplier: 1.0  # default: 1.0
