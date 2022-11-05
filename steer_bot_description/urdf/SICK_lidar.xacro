@@ -9,7 +9,7 @@
         <inertial>
             <origin xyz="0 0 0.15" rpy="0 0 0"/>
             <mass value="1"/>
-            <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+            <inertia ixx="0"  ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
         </inertial>
         <visual>
         <origin xyz="0 0 0.15" rpy="0 0 0"/>
@@ -38,14 +38,14 @@
         <material>Gazebo/RedGlow</material>
         <sensor name="laser" type="ray">
             <parent link="${name}"/>
-            <origin xyz="0 0 0.15" rpy="0 0 0"/>
+            <!--<origin xyz="0 0 0.15" rpy="0 0 0"/>-->
             <pose> 0 0 0.15 0 0 0 </pose>
             <axis>
-            <xyz>0 0 1</xyz>
-            <use_parent_model_frame>true</use_parent_model_frame>
+                <xyz>0 0 1</xyz>
+                <use_parent_model_frame>true</use_parent_model_frame>
             </axis>
             <visualize>true</visualize>
-            <update_rate>10</update_rate>
+            <update_rate>15</update_rate>
             <ray> 
             <scan>
                 <horizontal>
@@ -55,7 +55,7 @@
                 </horizontal>
             </scan>
             <range>
-                <min>0.3</min>
+                <min>0.1</min>
                 <max>25</max>
             </range>       
             </ray>
