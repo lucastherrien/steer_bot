@@ -14,7 +14,7 @@
       <visual>
         <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://zm_robot_description/meshes/kinect_v2.stl" scale="0.01 0.01 0.01"/>
+          <mesh filename="package://steer_bot_description/meshes/kinect_v2.stl" scale="0.01 0.01 0.01"/>
         </geometry>
         <!--<material name="red"/>-->
       </visual>

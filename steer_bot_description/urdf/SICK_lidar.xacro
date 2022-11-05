@@ -21,7 +21,7 @@
         <collision>
             <origin xyz="0 0 0.15" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://zm_robot_description/meshes/sick_tim_5xx.stl"/>
+                <mesh filename="package://steer_bot_description/meshes/sick_tim_5xx.stl"/>
             </geometry>
         </collision>
     </link>
