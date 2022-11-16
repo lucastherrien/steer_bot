@@ -3,7 +3,7 @@ ackermann_steering_controller:
     type: 'ackermann_steering_controller/AckermannSteeringController'
 
     # Odometry related 
-    publish_rate: 50                    # default: 1.0
+    publish_rate: 20                   # default: 1.0
     open_loop: false
 
     # Joints
@@ -43,15 +43,15 @@ ackermann_steering_controller:
     linear:
         x:
             has_velocity_limits    : true
-            max_velocity           : 10.0   # m/s
+            max_velocity           : 1.5   # m/s real 1.5
             has_acceleration_limits: true
-            max_acceleration       : 2.0    # m/s^2
+            max_acceleration       : 10    # m/s^2 real 0.5
     angular:
         z:
             has_velocity_limits    : true
-            max_velocity           : 3.0   # rad/s
+            max_velocity           : 3.14   # rad/s real 3.14
             has_acceleration_limits: true
-            max_acceleration       : 3.0    # rad/s^2
+            max_acceleration       : 10    # rad/s^2 real 0.3
 
     # Other (undocumented but in source code)
     # velocity_rolling_window_size: 10
