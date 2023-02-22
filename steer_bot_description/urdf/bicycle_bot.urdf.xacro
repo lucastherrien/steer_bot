@@ -37,7 +37,7 @@
         <jointName>
             front_wheel_joint
         </jointName>
-        <updateRate>50</updateRate>
+        <updateRate>20</updateRate>
         <alwaysOn>true</alwaysOn>
     </plugin>
   </gazebo>

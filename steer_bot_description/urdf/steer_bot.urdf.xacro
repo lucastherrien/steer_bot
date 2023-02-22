@@ -161,8 +161,8 @@
     <link name="camera">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.25"/>
-        <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+        <mass value="0.01"/>
+        <inertia ixx="0"  ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -218,7 +218,7 @@
       </camera>
       <plugin name="camera2_camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
-        <updateRate>30.0</updateRate>
+        <updateRate>15.0</updateRate>
         <imageTopicName>/camera2/image_raw</imageTopicName>
         <cameraInfoTopicName>/camera2/camera_info</cameraInfoTopicName>
         <frameName>camera</frameName>
