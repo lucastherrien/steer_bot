@@ -46,7 +46,7 @@
             <xyz>0 0 1</xyz>
             <use_parent_model_frame>true</use_parent_model_frame>
         </axis>-->
-        <visualize>true</visualize>
+        <visualize>false</visualize>
         <update_rate>15.0</update_rate>
         <camera>
             <horizontal_fov>1.3962634</horizontal_fov>

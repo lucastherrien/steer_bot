@@ -54,7 +54,7 @@
   <xacro:property name="steer_mass" value="1" />
 
   <!-- Axle positions -->
-  <xacro:property name="axle_offset" value="0.0254" /> <!--fake 0.05 real 0.139-->
+  <xacro:property name="axle_offset" value="0.036175" /> <!--fake 0.05 real 0.035-->
   <xacro:property name="steer_offset" value="0.0254" /> <!--fake 0.02 real 0.139-->
 
   <!-- Base link -->
@@ -233,4 +233,3 @@
   </gazebo>
 
 </robot>
-
