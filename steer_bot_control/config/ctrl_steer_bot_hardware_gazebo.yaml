@@ -11,5 +11,5 @@ steer_bot_hardware_gazebo:
   camera_joint : 'camera_real_joint'
 
   enable_ackermann_link : true
-  wheel_separation_h : 0.38735
-  wheel_separation_w : 0.278
+  wheel_separation_h : 0.315
+  wheel_separation_w : 0.2858
